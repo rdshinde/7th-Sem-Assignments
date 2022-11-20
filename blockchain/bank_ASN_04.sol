@@ -8,29 +8,26 @@
 pragma solidity ^0.8;
 
 contract bank{
-    mapping (uint256 => uint256) BankUsers;
+    mapping (string => uint256) BankUsers;
     
-    uint256 public userCount  = 0;
-
-    function addNewUser(uint256 openingBalance) public returns(uint256, uint256){
-        userCount++;
-        BankUsers[userCount] = openingBalance;
-        return (userCount, openingBalance);
+    function addNewUser(string memory userName, uint256 openingBalance) public returns(string memory, uint256){
+        BankUsers[userName] = openingBalance;
+        return (userName, openingBalance);
     } 
 
-    function depositMoney(uint256 userId, uint256 moneyToAdd) public returns(uint256, uint256){
-        BankUsers[userId] = BankUsers[userId] + moneyToAdd;
-        return (userCount, BankUsers[userId]);
+    function depositMoney(string memory userName, uint256 moneyToAdd) public returns(string memory, uint256){
+        BankUsers[userName] = BankUsers[userName] + moneyToAdd;
+        return (userName, BankUsers[userName]);
     }
 
-    function withdrawMoney(uint256 userId, uint256 moneyToWithdraw) public returns(uint256, uint256){
-        require(BankUsers[userId] > moneyToWithdraw, "Insufficient balance.");
-        BankUsers[userId] = BankUsers[userId] - moneyToWithdraw;
-        return (userCount, BankUsers[userId]);
+    function withdrawMoney(string memory userName, uint256 moneyToWithdraw) public returns(string memory, uint256){
+        require(BankUsers[userName] > moneyToWithdraw, "Insufficient balance.");
+        BankUsers[userName] = BankUsers[userName] - moneyToWithdraw;
+        return (userName, BankUsers[userName]);
     }
 
-    function getUserBalance(uint256 userId) public view returns(uint256, uint256){
-        return(userId, BankUsers[userId]);
+    function getUserBalance(string memory userName) public view returns(string memory, uint256){
+        return(userName, BankUsers[userName]);
     }
     
 }
