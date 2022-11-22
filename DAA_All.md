@@ -317,3 +317,62 @@ graph = [[0, 10, 15, 20], [10, 0, 35, 25], [15, 35, 0, 30], [20, 25, 30, 0]]
 s = 0
 print(travellingSalesman(graph, s))
 ```
+
+# Merge Sort
+```python
+def mergeSort(arr):
+    if len(arr) > 1:
+        mid = len(arr) // 2
+        left = arr[:mid]
+        right = arr[mid:]
+
+        mergeSort(left)
+        mergeSort(right)
+
+        i = j = k = 0
+        while i < len(left) and j < len(right):
+            if left[i] < right[j]:
+                arr[k] = left[i]
+                i += 1
+            else:
+                arr[k] = right[j]
+                j += 1
+            k += 1
+
+        while i < len(left):
+            arr[k] = left[i]
+            i += 1
+            k += 1
+
+        while j < len(right):
+            arr[k] = right[j]
+            j += 1
+            k += 1
+
+arr = [12, 11, 13, 5, 6, 7]
+mergeSort(arr)
+print(arr)
+```
+
+# Quick Sort
+```python
+def quickSort(arr, low, high):
+    if low < high:
+        pi = partition(arr, low, high)
+        quickSort(arr, low, pi - 1)
+        quickSort(arr, pi + 1, high)
+    
+def partition(arr, low, high):
+    i = low - 1
+    pivot = arr[high]
+    for j in range(low, high):
+        if arr[j] <= pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
+    arr[i + 1], arr[high] = arr[high], arr[i + 1]
+    return i + 1
+
+arr = [10, 7, 8, 9, 1, 5]
+quickSort(arr, 0, len(arr) - 1)
+print(arr)
+```
