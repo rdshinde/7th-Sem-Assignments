@@ -1,3 +1,4 @@
+# Tower of hanoi
 def towerOfHanoi(n, source, destination, auxiliary):
     if n == 1:
         print("Move disk 1 from source", source, "to destination", destination)

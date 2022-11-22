@@ -1,3 +1,4 @@
+# 0-1 Knapsack using dynamic programming
 def knapSack(W, wt, val, n):
     for i in range(n + 1):
         for w in range(W + 1):

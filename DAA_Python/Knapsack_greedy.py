@@ -1,6 +1,5 @@
+# Knapsack using greedy approach
 from typing import ItemsView
-
-
 def knapsackUsingGreedy(items, capacity):
     # Sort items by value/weight ratio
     items.sort(key=lambda x: x.value / x.weight, reverse=True)
